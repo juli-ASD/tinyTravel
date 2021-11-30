@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tiny Travel</string>
+
+    <!-- Dropdown departamentos -->
+    
+    <string-array name="Departamentos">
+        <item>Boyacá</item>
+        <item>Cundinamarca</item>
+        <item>Nariño</item>
+    </string-array>
+</resources>
