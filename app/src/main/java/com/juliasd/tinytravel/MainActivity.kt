@@ -33,6 +33,18 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
             onItemClickListener = this@MainActivity
         }
 
+        binding.etDate.setOnClickListener{ showDatePickerDialog()}
+    }
+
+    private fun showDatePickerDialog() {
+
+        val datePicker = DatePickerFragment{day, month, year -> onDateSelected(day, month, year)}
+        datePicker.show(supportFragmentManager, "datePicker")
+    }
+
+    fun onDateSelected(day:Int, month:Int, year: Int) {
+
+        binding.etDate.setText("Ingresas a tu Tiny House el día $day / $month / $year")
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
