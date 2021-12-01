@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
             onItemClickListener = this@MainActivity
         }
 
-        binding.etDate.setOnClickListener{ showDatePickerDialog()}
+        binding.etDate.setOnClickListener{ showDatePickerDialog() }
+        binding.edDate2.setOnClickListener{ showDatePickerDialog2() }
     }
 
     private fun showDatePickerDialog() {
@@ -42,9 +43,19 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         datePicker.show(supportFragmentManager, "datePicker")
     }
 
+    private fun showDatePickerDialog2() {
+
+        val datePicker2 = DatePickerFragment2{day, month, year -> onDateSelected2(day, month, year)}
+        datePicker2.show(supportFragmentManager, "datePicker2")
+    }
+
     fun onDateSelected(day:Int, month:Int, year: Int) {
 
         binding.etDate.setText("Ingresas a tu Tiny House el día $day / $month / $year")
+    }
+
+    fun onDateSelected2(day2:Int, month2:Int, year2: Int) {
+        binding.edDate2.setText("Entregas tu Tiny House el día $day2 / $month2 / $year2")
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
