@@ -5,15 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.DatePicker
-import android.widget.Toast
+import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.juliasd.tinytravel.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
+    var tinyHouses = listOf<TinyHouse>(
+            TinyHouse("https://picsum.photos/150/150", "Tiny_Mountain", "Consaca - Nariño", "Vista de un hermoso cañon", "$40 USD", "$250 USD"),
+            TinyHouse("https://picsum.photos/150/150", "Tiny_Lake", "La Cocha - Nariño", "Vista espectacular a la Laguna", "$60 USD", "$380 USD"),
+            TinyHouse("https://picsum.photos/150/150", "Tiny_Beach", "Manta - Ecuador", "Vista a un cristalino y maravilloso Mar", "$75 USD", "$550 USD")
+    )
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +38,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
         binding.etDate.setOnClickListener{ showDatePickerDialog() }
         binding.edDate2.setOnClickListener{ showDatePickerDialog2() }
+        initRecycler()
+
     }
 
     private fun showDatePickerDialog() {
@@ -61,6 +66,13 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val item = parent?.getItemAtPosition(position).toString()
         Toast.makeText(this@MainActivity, item, Toast.LENGTH_SHORT).show()
+    }
+
+    fun initRecycler() {
+
+        binding.rvTinyHouse.layoutManager = LinearLayoutManager(this)
+        val adapter = TinyAdapter(tinyHouses)
+        binding.rvTinyHouse.adapter = adapter
     }
 
 }
