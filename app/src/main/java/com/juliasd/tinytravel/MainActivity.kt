@@ -1,6 +1,7 @@
 package com.juliasd.tinytravel
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -40,6 +41,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         binding.edDate2.setOnClickListener{ showDatePickerDialog2() }
         initRecycler()
 
+        binding.buttonBuscar.setOnClickListener() {
+            startActivity(Intent(this, googlemaps::class.java))
+        }
+
     }
 
     private fun showDatePickerDialog() {
@@ -62,6 +67,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     fun onDateSelected2(day2:Int, month2:Int, year2: Int) {
         binding.edDate2.setText("Entregas tu Tiny House el día $day2 / $month2 / $year2")
     }
+
+
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val item = parent?.getItemAtPosition(position).toString()
